@@ -1,11 +1,19 @@
 require './lib/nightwriter'
+require 'pry'
 
 RSpec.describe do NightWriter
   before :each do
-    @nightreader = NightWriter.new
+    ARGV = ["message_test.txt", "braille_test.txt"]
+    @nightwriter = NightWriter.new('message_test.txt', 'braille_test.txt')
+    @file_path = File.open(ARGV[0], "r")
+    @output = File.open(ARGV[1], "w")
   end
 
-  it "can print a start message" do
-    expect(@nightreader.start).to eq "created characters.txt containing 20 characters"
+  it "can create a file path" do
+    expect(@nightwriter.file_path).to be_a File
+  end
+
+  it "can create a start message" do
+    expect(@nightwriter.start).to eq "created braille_test.txt containing 29 characters"
   end
 end
