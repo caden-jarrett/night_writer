@@ -18,7 +18,6 @@ RSpec.describe do TexttoBraille
   end
 
   it "can run a translation to brailie" do
-    binding.pry
-    expect(@english_translator.braille_translate). to eq ()
+    expect(@english_translator.braille_translate). to eq [["O.", "..", ".."], ["O.", "O.", ".."], ["OO", "..", ".."]]
   end
 end

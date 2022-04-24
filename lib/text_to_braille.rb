@@ -37,6 +37,10 @@ class TexttoBraille < FileTranslate
   end
 
   def braille_translate
-
+    return_message = Array.new(0)
+    @alphabet.each do |key, value|
+      return_message << value if @english_message.chars.include?(key)
+    end
+    return return_message
   end
 end
