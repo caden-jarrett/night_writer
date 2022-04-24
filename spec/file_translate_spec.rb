@@ -25,7 +25,6 @@ RSpec.describe do FileTranslate
     # Created braille_test.txt containing 29 characters
     # => nil
     # when using puts
-
   end
 
 end
