@@ -1,5 +1,7 @@
 require './lib/file_translate'
 require './lib/text_to_braille'
+require 'simplecov'
+SimpleCov.start
 require 'rspec'
 require 'pry'
 
@@ -17,7 +19,15 @@ RSpec.describe do TexttoBraille
     expect(@english_translator).to be_a_instance_of TexttoBraille
   end
 
-  it "can run a translation to brailie" do
-    expect(@english_translator.braille_translate). to eq [["O.", "..", ".."], ["O.", "O.", ".."], ["OO", "..", ".."]]
+  it "can store each character from the message.txt file" do
+    expect(@english_translator.message_store).to eq ["a", "a", "a"]
+  end
+
+  it "can inpput the braille equivalent to an array" do
+    expect(@english_translator.message_translate).to eq [["O.", "..", ".."], ["O.", "..", ".."], ["O.", "..", ".."]]
+  end
+
+  it "can translate each character from the message_translate array" do
+    expect(@english_translator.message_output).to eq ["a", "a", "a"]
   end
 end

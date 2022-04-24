@@ -2,6 +2,7 @@
 #================================#
 
 require "./lib/file_translate"
+require "./lib/text_to_braille"
 
-nightwriter = FileTranslate.new
-nightwriter.start
+english_translate = TexttoBraille.new
+english_translate.braille_start

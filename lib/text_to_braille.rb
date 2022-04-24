@@ -36,11 +36,32 @@ class TexttoBraille < FileTranslate
     }
   end
 
-  def braille_translate
-    return_message = Array.new(0)
-    @alphabet.each do |key, value|
-      return_message << value if @english_message.chars.include?(key)
+  def message_store
+    return_array = Array.new(0)
+    @english_message.chars.each do |letter|
+      return_array << letter
     end
-    return return_message
+    return return_array
+  end
+
+  def message_translate
+    translated_array = Array.new(0)
+    message_store.each do |character|
+      @alphabet.each do |key, value|
+        translated_array << value if key == character
+      end
+    end
+    return translated_array
+  end
+
+  def message_output
+    
+  end
+
+  def braille_start
+    @file_path.close
+    @braille_text.write(message_output)
+    @braille_text.close
+    puts "Created '#{ARGV[1]}' containing #{file_length} characters"
   end
 end
