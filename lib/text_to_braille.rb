@@ -55,7 +55,13 @@ class TexttoBraille < FileTranslate
   end
 
   def message_output
-    
+    translated_braille = message_translate
+    transposed = translated_braille.transpose
+    top = transposed[0].join.to_s
+    mid = transposed[1].join.to_s
+    bot = transposed[2].join.to_s
+    braille = "#{top}\n#{mid}\n#{bot}"
+    return braille
   end
 
   def braille_start
