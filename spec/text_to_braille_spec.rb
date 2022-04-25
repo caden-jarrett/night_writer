@@ -36,9 +36,9 @@ RSpec.describe TexttoBraille do
     expect(@english_translator.transpose_sentences).to eq  [[["O.","O.","O.","O.","O.","..",".O","O.","O.","O.","OO","..",".O","O.",".O",".O","..",".O",".O","..","OO","O.","O.","O.","..",".O","O.","O.","OO","..","OO","O.","O.",".O","OO","..","OO","O.","O.","O."],["OO",".O","O.","O.",".O","..","OO",".O","OO","O.",".O","..","OO","OO","O.","O.","..","O.","O.","..","..",".O","OO",".O","..","OO","OO","..",".O","..","O.",".O","OO","OO",".O","..","..","OO","..","OO"],["..","..","O.","O.","O.","..",".O","O.","O.","O.","..","..","O.","..","..","O.","..","..","O.","..","O.","O.","O.","..","..","O.","..","..","O.","..","..","O.","O.","O.","OO","..","..","..","..","O."]],[["O.", "OO", ".O", "O.", "O.", ".O"],["..", "..", "OO", ".O", "OO", "O."],["..", "..", "O.", "..", "O.", "O."]]]
   end
 
-  # it "can translate each character from the message_translate array" do
-  #   @english_translator.transpose_sentences
-  #   # binding.pry
-  #   expect(@english_translator.split_transposed_sentences).to eq [["O.O.O.O.O....OO.O.O.OO...OO..O.O...O.O..OOO.O.O....OO.O.OO..OOO.O..OOO..OOO.O.O.","OO.OO.O..O..OO.OOOO..O..OOOOO.O...O.O......OOO.O..OOOO...O..O..OOOOO.O....OO..OO","....O.O.O....OO.O.O.....O.....O.....O...O.O.O.....O.....O.....O.O.O.OO........O."],["O.OO.OO.O..O", "....OO.OOOO.", "....O...O.O."]]
-  # end
+  it "can translate each character from the message_translate array" do
+    @english_translator.transpose_sentences
+    # binding.pry
+    expect(@english_translator.split_transposed_sentences).to eq [["O.O.O.O.O....OO.O.O.OO...OO..O.O...O.O..OOO.O.O....OO.O.OO..OOO.O..OOO..OOO.O.O.","OO.OO.O..O..OO.OOOO..O..OOOOO.O...O.O......OOO.O..OOOO...O..O..OOOOO.O....OO..OO","....O.O.O....OO.O.O.....O.....O.....O...O.O.O.....O.....O.....O.O.O.OO........O."],["O.OO.OO.O..O", "....OO.OOOO.", "....O...O.O."]]
+  end
 end
