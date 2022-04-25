@@ -40,13 +40,11 @@ include Library
     translated_braille.each do |sentence|
       @transposed_sentences << sentence.transpose
     end
-    # binding.pry
     return @transposed_sentences
   end
 
   def split_transposed_sentences
     @transposed_sentences.each do |transposed_sentence|
-      # binding.pry
       top = transposed_sentence[0].join
       mid = transposed_sentence[1].join
       bot = transposed_sentence[2].join
@@ -61,7 +59,6 @@ include Library
         @printed_braille << line
       end
     end
-    # binding.pry
     return @printed_braille
   end
 
@@ -69,7 +66,6 @@ include Library
     @printed_braille.each do |other_line|
       @braille_string += "#{other_line}\n"
     end
-    # binding.pry
     return @braille_string
   end
 

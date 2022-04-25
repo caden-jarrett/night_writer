@@ -47,5 +47,12 @@ RSpec.describe TexttoBraille do
     # binding.pry
     expect(@english_translator.join_braille).to eq ["O.O.O.O.O....OO.O.O.OO...OO..O.O...O.O..OOO.O.O....OO.O.OO..OOO.O..OOO..OOO.O.O.","OO.OO.O..O..OO.OOOO..O..OOOOO.O...O.O......OOO.O..OOOO...O..O..OOOOO.O....OO..OO","....O.O.O....OO.O.O.....O.....O.....O...O.O.O.....O.....O.....O.O.O.OO........O.","O.OO.OO.O..O","....OO.OOOO.","....O...O.O."]
   end
-  
+
+  it "can populate the braille string with characters to print to the final txt file" do
+    @english_translator.transpose_sentences
+    @english_translator.split_transposed_sentences
+    @english_translator.join_braille
+    expect(@english_translator.populate_braille_string).to eq "O.O.O.O.O....OO.O.O.OO...OO..O.O...O.O..OOO.O.O....OO.O.OO..OOO.O..OOO..OOO.O.O.\nOO.OO.O..O..OO.OOOO..O..OOOOO.O...O.O......OOO.O..OOOO...O..O..OOOOO.O....OO..OO\n....O.O.O....OO.O.O.....O.....O.....O...O.O.O.....O.....O.....O.O.O.OO........O.\nO.OO.OO.O..O\n....OO.OOOO.\n....O...O.O.\n"
+  end
+
 end
