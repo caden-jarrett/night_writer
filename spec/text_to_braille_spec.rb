@@ -32,13 +32,20 @@ RSpec.describe TexttoBraille do
 
   it "can transpose the translated sentences of the braille array" do
     # binding.pry
-    expect(@english_translator.transpose_sentences).to be_a Array
     expect(@english_translator.transpose_sentences).to eq  [[["O.","O.","O.","O.","O.","..",".O","O.","O.","O.","OO","..",".O","O.",".O",".O","..",".O",".O","..","OO","O.","O.","O.","..",".O","O.","O.","OO","..","OO","O.","O.",".O","OO","..","OO","O.","O.","O."],["OO",".O","O.","O.",".O","..","OO",".O","OO","O.",".O","..","OO","OO","O.","O.","..","O.","O.","..","..",".O","OO",".O","..","OO","OO","..",".O","..","O.",".O","OO","OO",".O","..","..","OO","..","OO"],["..","..","O.","O.","O.","..",".O","O.","O.","O.","..","..","O.","..","..","O.","..","..","O.","..","O.","O.","O.","..","..","O.","..","..","O.","..","..","O.","O.","O.","OO","..","..","..","..","O."]],[["O.", "OO", ".O", "O.", "O.", ".O"],["..", "..", "OO", ".O", "OO", "O."],["..", "..", "O.", "..", "O.", "O."]]]
   end
 
-  it "can translate each character from the message_translate array" do
+  it "can split the transposed array sentences into top, mid, bottom segments" do
     @english_translator.transpose_sentences
     # binding.pry
     expect(@english_translator.split_transposed_sentences).to eq [["O.O.O.O.O....OO.O.O.OO...OO..O.O...O.O..OOO.O.O....OO.O.OO..OOO.O..OOO..OOO.O.O.","OO.OO.O..O..OO.OOOO..O..OOOOO.O...O.O......OOO.O..OOOO...O..O..OOOOO.O....OO..OO","....O.O.O....OO.O.O.....O.....O.....O...O.O.O.....O.....O.....O.O.O.OO........O."],["O.OO.OO.O..O", "....OO.OOOO.", "....O...O.O."]]
   end
+
+  it "can join the lines of the transposed places into a array" do
+    @english_translator.transpose_sentences
+    @english_translator.split_transposed_sentences
+    # binding.pry
+    expect(@english_translator.join_braille).to eq ["O.O.O.O.O....OO.O.O.OO...OO..O.O...O.O..OOO.O.O....OO.O.OO..OOO.O..OOO..OOO.O.O.","OO.OO.O..O..OO.OOOO..O..OOOOO.O...O.O......OOO.O..OOOO...O..O..OOOOO.O....OO..OO","....O.O.O....OO.O.O.....O.....O.....O...O.O.O.....O.....O.....O.O.O.OO........O.","O.OO.OO.O..O","....OO.OOOO.","....O...O.O."]
+  end
+  
 end

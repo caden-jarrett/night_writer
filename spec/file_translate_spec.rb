@@ -11,6 +11,9 @@ RSpec.describe FileTranslate do
     @output = File.open("./spec_txt/it1_braille_test.txt", "w")
   end
 
+  it "exists" do
+    expect(@translator).to be_a FileTranslate
+  end
   it "can create a file path" do
     expect(@translator.file_path).to be_a File
   end
