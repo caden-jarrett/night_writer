@@ -6,10 +6,9 @@ require 'pry'
 
 RSpec.describe FileTranslate do
   before :each do
-    # ARGV = ["message_test.txt", "braille_test.txt"]
-    @translator = FileTranslate.new("message_test.txt", "braille_test.txt")
-    @file_path = File.open("message_test.txt", "r")
-    @output = File.open("braille_test.txt", "w")
+    @translator = FileTranslate.new("./spec_txt/it1_message_test.txt", "./spec_txt/it1_braille_test.txt")
+    @file_path = File.open("./spec_txt/it1_message_test.txt", "r")
+    @output = File.open("./spec_txt/it1_braille_test.txt", "w")
   end
 
   it "can create a file path" do
@@ -22,7 +21,7 @@ RSpec.describe FileTranslate do
 
   it "can create a start message" do
     expect(@translator.start).to eq NIL
-    # p instead of puts prints "Created braille_test.txt containing 29 characters"
+    # p instead of puts prints "Created ./spec_txt/braille_test.txt containing 29 characters"
     # in pry we get returned
     # Created braille_test.txt containing 29 characters
     # => nil

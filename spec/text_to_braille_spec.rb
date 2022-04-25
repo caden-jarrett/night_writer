@@ -5,14 +5,14 @@ require './lib/text_to_braille'
 require 'rspec'
 require 'pry'
 
-# command to run spec test for iteration_2 on runner: ruby ./lib/night_writer.rb it2_message_test.txt it2_braille_test.txt
+# command to run spec test for iteration_2 on runner: ruby ./lib/night_writer.rb ./spec_txt/it2_message_test.txt ./spec_txt/it2_braille_test.txt
 RSpec.describe TexttoBraille do
 
   before :each do
-    @translator = FileTranslate.new("it2_message_test.txt", "it2_braille_test.txt")
-    @english_translator = TexttoBraille.new("it2_message_test.txt", "it2_braille_test.txt")
-    @file_path = File.open("it2_message_test.txt", "r")
-    @output = File.open("it2_braille_test.txt", "w")
+    @translator = FileTranslate.new("./spec_txt/it2_message_test.txt", "./spec_txt/it2_braille_test.txt")
+    @english_translator = TexttoBraille.new("./spec_txt/it2_message_test.txt", "./spec_txt/it2_braille_test.txt")
+    @file_path = File.open("./spec_txt/it2_message_test.txt", "r")
+    @output = File.open("./spec_txt/it2_braille_test.txt", "w")
     @english_message = @file_path.read.delete("\n")
   end
 
