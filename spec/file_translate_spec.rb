@@ -1,15 +1,15 @@
-require './lib/file_translate'
 require 'simplecov'
 SimpleCov.start
+require './lib/file_translate'
 require 'rspec'
 require 'pry'
 
-RSpec.describe do FileTranslate
+RSpec.describe FileTranslate do
   before :each do
-    ARGV = ["message_test.txt", "braille_test.txt"]
-    @translator = FileTranslate.new
-    @file_path = File.open(ARGV[0], "r")
-    @output = File.open(ARGV[1], "w")
+    # ARGV = ["message_test.txt", "braille_test.txt"]
+    @translator = FileTranslate.new("message_test.txt", "braille_test.txt")
+    @file_path = File.open("message_test.txt", "r")
+    @output = File.open("braille_test.txt", "w")
   end
 
   it "can create a file path" do
