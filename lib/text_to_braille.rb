@@ -54,7 +54,6 @@ include Library
     printed_braille.each do |other_line|
       braille_string += "#{other_line}\n"
     end
-    binding.pry
     return braille_string
   end
 

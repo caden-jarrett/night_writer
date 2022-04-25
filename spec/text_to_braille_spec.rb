@@ -5,6 +5,7 @@ require './lib/text_to_braille'
 require 'rspec'
 require 'pry'
 
+# command to run spec test for iteration_2 on runner: ruby ./lib/night_writer.rb it2_message_test.txt it2_braille_test.txt
 RSpec.describe TexttoBraille do
 
   before :each do
@@ -21,124 +22,16 @@ RSpec.describe TexttoBraille do
 
   it "can store each character from the message.txt file" do
     # binding.pry
-    expect(@english_translator.message_store).to eq ["a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a",
-     "a"]
-
+    expect(@english_translator.message_store.join).to eq "hello world this is more than forty characters"
   end
 
   it "can inpput the braille equivalent to an array" do
     # binding.pry
-    expect(@english_translator.message_translate).to eq [["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."],
-  ["O.", "..", ".."]]
-
+    expect(@english_translator.message_translate.join).to eq "O.OO..O..O..O.O.O.O.O.O.O..OO........OOO.OO..OO.O.OOO.O.O.O.OO.O.........OOOO.O.OO...OO....OO.O........OO....OO.O.......OO..O.O..OO.O.OOO.O..O.........OOOO.O.OO..O.....OO.OO.......OOO...O..OO.O.OOO..OOOO.OO.OOO......OO....O.OO..O.....O.OOO.O.....OO.....OOOO.O..O..O.OOO..OO.O."
   end
 
   it "can translate each character from the message_translate array" do
-    binding.pry
-    expect(@english_translator.message_output).to eq "O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.\n............................................................................................................\n............................................................................................................"
+    # binding.pry
+    expect(@english_translator.message_output).to eq "O.O.O.O.O....OO.O.O.OO...OO..O.O...O.O..OOO.O.O....OO.O.OO..OOO.O..OOO..OOO.O.O.\nOO.OO.O..O..OO.OOOO..O..OOOOO.O...O.O......OOO.O..OOOO...O..O..OOOOO.O....OO..OO\n....O.O.O....OO.O.O.....O.....O.....O...O.O.O.....O.....O.....O.O.O.OO........O.\nO.OO.OO.O..O\n....OO.OOOO.\n....O...O.O.\n"
   end
 end
