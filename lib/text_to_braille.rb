@@ -1,6 +1,8 @@
 require 'pry'
-class TexttoBraille < FileTranslate
+require "./lib/library_module"
 
+class TexttoBraille < FileTranslate
+include Library
   attr_reader :path_1, :path_2
   def initialize(path_1, path_2)
     @path_1 = path_1
@@ -8,35 +10,7 @@ class TexttoBraille < FileTranslate
     @file_path = File.open(path_1, "r")
     @braille_text = File.open(path_2, "w")
     @english_message = @file_path.read.delete("\n")
-    @alphabet = {
-      'a' => ['O.','..','..'],
-      'b' => ['O.','O.','..'],
-      'c' => ['OO','..','..'],
-      'd' => ['OO','.O','..'],
-      'e' => ['O.','.O','..'],
-      'f' => ['OO','O.','..'],
-      'g' => ['OO','OO','..'],
-      'h' => ['O.','OO','..'],
-      'i' => ['.O','O.','..'],
-      'j' => ['.O','OO','..'],
-      'k' => ['O.','..','O.'],
-      'l' => ['O.','O.','O.'],
-      'm' => ['OO','..','O.'],
-      'n' => ['OO','.O','O.'],
-      'o' => ['O.','.O','O.'],
-      'p' => ['OO','O.','O.'],
-      'q' => ['OO','OO','O.'],
-      'r' => ['O.','OO','O.'],
-      's' => ['.O','O.','O.'],
-      't' => ['.O','OO','O.'],
-      'u' => ['O.','..','OO'],
-      'v' => ['O.','O.','OO'],
-      'w' => ['.O','OO','.O'],
-      'x' => ['OO','..','OO'],
-      'y' => ['OO','.O','OO'],
-      'z' => ['O.','.O','OO'],
-      ' ' => ['..','..','..']
-    }
+    @alphabet = ENG_TO_BRA
   end
 
   def message_store
@@ -54,50 +28,34 @@ class TexttoBraille < FileTranslate
         translated_array << value if key == character
       end
     end
-    return translated_array #.each_slice(40).to_a
+    return translated_array
   end
 
-  # def message_output
-  #   binding.pry
-  #   translated_braille = message_translate
-  #   transposed = translated_braille.transpose
-  #   top = transposed[0].join.to_s
-  #   mid = transposed[1].join.to_s
-  #   bot = transposed[2].join.to_s
-  #   braille = "#{top}\n#{mid}\n#{bot}"
-  #   binding.pry
-  # end
-
   def message_output
-    translated_braille = message_translate
-    transposed = translated_braille.transpose
-    if transposed[0].count < 40
-      top = transposed[0][0..39].join.to_s
-      mid = transposed[1][0..39].join.to_s
-      bot = transposed[2][0..39].join.to_s
-      braille = "#{top}\n#{mid}\n#{bot}"
-    elsif transposed[0].count > 40 && transposed[0].count < 80
-      top = transposed[0][0..39].join.to_s
-      mid = transposed[1][0..39].join.to_s
-      bot = transposed[2][0..39].join.to_s
-      top2 = transposed[0][40..79].join.to_s
-      mid2 = transposed[1][40..79].join.to_s
-      bot2 = transposed[2][40..79].join.to_s
-      braille = "#{top}\n#{mid}\n#{bot}\n#{top2}\n#{mid2}\n#{bot2}"
-    else
-      top = transposed[0][0..39].join.to_s
-      mid = transposed[1][0..39].join.to_s
-      bot = transposed[2][0..39].join.to_s
-      top2 = transposed[0][40..79].join.to_s
-      mid2 = transposed[1][40..79].join.to_s
-      bot2 = transposed[2][40..79].join.to_s
-      top3 = transposed[0][80..119].join.to_s
-      mid3 = transposed[1][80..119].join.to_s
-      bot3 = transposed[2][80..119].join.to_s
-      braille = "#{top}\n#{mid}\n#{bot}\n#{top2}\n#{mid2}\n#{bot2}\n#{top3}\n#{mid3}\n#{bot3}"
+    transposed_sentences = Array.new(0)
+    translated_braille = message_translate.each_slice(40).to_a
+    transposed_places = Array.new(0)
+    printed_braille = Array.new(0)
+    braille_string = ""
+    translated_braille.each do |sentence|
+      transposed_sentences << sentence.transpose
+    end
+    transposed_sentences.each do |transposed_sentence|
+      top = transposed_sentence[0].join
+      mid = transposed_sentence[1].join
+      bot = transposed_sentence[2].join
+      transposed_places << [top, mid, bot]
+    end
+    transposed_places.each do |sentence|
+      sentence.each do |line|
+        printed_braille << line
+      end
+    end
+    printed_braille.each do |other_line|
+      braille_string += "#{other_line}\n"
     end
     binding.pry
-    return braille
+    return braille_string
   end
 
   def braille_start

@@ -6,6 +6,7 @@ require 'rspec'
 require 'pry'
 
 RSpec.describe TexttoBraille do
+
   before :each do
     @translator = FileTranslate.new("it2_message_test.txt", "it2_braille_test.txt")
     @english_translator = TexttoBraille.new("it2_message_test.txt", "it2_braille_test.txt")
@@ -137,7 +138,7 @@ RSpec.describe TexttoBraille do
   end
 
   it "can translate each character from the message_translate array" do
-    # binding.pry
+    binding.pry
     expect(@english_translator.message_output).to eq "O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.\n............................................................................................................\n............................................................................................................"
   end
 end
