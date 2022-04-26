@@ -5,7 +5,7 @@ require './lib/text_to_braille'
 require 'rspec'
 require 'pry'
 
-# command to run spec test for iteration_2 on runner: ruby ./lib/night_writer.rb ./spec_txt/it2_message_test.txt ./spec_txt/it2_braille_test.txt
+# command to run spec message for iteration_2 on runner: ruby ./lib/night_writer.rb ./spec_txt/it2_message_test.txt ./spec_txt/it2_braille_test.txt
 RSpec.describe TexttoBraille do
 
   before :each do
